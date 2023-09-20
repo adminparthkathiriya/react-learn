@@ -1,28 +1,34 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter text here");
-  const handeonclick = () => {
-    console.log("handeonclick");
-    setText("fbfdbdfbd");
+  const [inputText, setInputText] = useState("");
+
+  // Function to handle text input change
+  const handleInputChange = (event) => {
+    const newInputText = event.target.value;
+    setInputText(newInputText.toUpperCase());
   };
-  const handeonchange = () => {
-    console.log("handeonchange");
-  };
+
   return (
-    <div>
-      <h1>{props.heading} </h1>
+    <div className="container">
+      <h1>{props.heading}</h1>
       <div className="mb-3">
         <textarea
           className="form-control"
-          onChange={handeonchange}
-          value={text}
+          onChange={handleInputChange}
           id="myBox"
           rows="8"></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handeonclick}>
-        Convert to Uppercase
-      </button>
+      <p>{inputText.length}-words</p>
+      <p>{inputText.split(" ").length}-character</p>
+      <div className="mb-3">
+        <textarea
+          className="form-control"
+          value={inputText}
+          placeholder="preview"
+          id="myBox2"
+          rows="8"></textarea>
+      </div>
     </div>
   );
 }
